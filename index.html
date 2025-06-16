@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BIDV Quiz</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="questions.js"></script>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <div class="quiz-header">
+            <span class="timer" id="timer">20:0</span>
+            <!-- <label><input type="radio" name="mode" id="modeBoDe" checked> Thi theo bộ đề</label> -->
+            <!-- <label><input type="radio" name="mode" id="modeNgauNhien"> Thi ngẫu nhiên</label> -->
+
+            <!-- <select id="boDeSelect" style="height:25px; margin-left:10px;">
+                <option value="1">Đề 1 (50 câu)</option>
+                <option value="2">Đề 2 (50 câu)</option>
+                <option value="3">Đề 3 (50 câu)</option>
+                <option value="4">Đề 4 (50 câu)</option>
+                <option value="5">Đề 5 (50 câu)</option>
+                <option value="6">Đề 6 (50 câu)</option>
+                <option value="7">Đề 7 (44 câu)</option>
+            </select> -->
+
+            <!-- <select id="randomCountSelect" style="height:25px; margin-left:10px; display:none;">
+                <option value="25" selected>25 câu</option>
+                <option value="50">50 câu</option>
+                <option value="100">100 câu</option>
+                <option value="150">150 câu</option>
+                <option value="200">200 câu</option>
+                <option value="250">250 câu</option>
+                <option value="300">300 câu</option>
+                <option value="344">Tất cả (344 câu)</option>
+            </select> -->
+        </div>
+
+        <div class="infor-button">
+            <span class="numberRecord"></span>
+            <button class="submit-btn" id="resetBtn" style="margin: 0 10px;">Resert bài</button>
+            <button class="submit-btn" id="showWrongBtn" style="display: none">
+                Xem câu sai
+            </button>
+        </div>
+
+        <div id="quiz"></div>
+        <div class="actions">
+            <button id="prevBtn" style="display: none">Câu trước</button>
+            <button id="nextBtn">Câu tiếp theo</button>
+        </div>
+        <div class="result" id="result"></div>
+    </div>
+    <script>
+        //#region Khu vực biến khởi tạo
+        // Khởi tạo quiz
+        let current = 0;
+        // Số câu đúng
+        let numberCorrect = 0;
+        let quizData = JSON.parse(JSON.stringify(window.questions));
+        let userAnswers = Array(quizData.length).fill(null);
+        let timer = 20 * 60; // 20 phút
+        let isSubmitted = false;
+        let timerInterval = setInterval(updateTimer, 1000);
+        let showWrongOnly = false;
+        // Xem câu sai
+        let currentError = 0;   
+        //#endregion
+
+        // Khởi tạo quiz ban đầu
+        initQuiz();
+
+        function initQuiz() {
+            let allQuestions = JSON.parse(JSON.stringify(window.questions));
+            let mode = document.getElementById("modeBoDe")?.checked ? "bode" : "random";
+            if (mode === "bode") {
+                let boDe = parseInt(document.getElementById("boDeSelect").value, 10);
+                let start = (boDe - 1) * 50;
+                let count = boDe === 7 ? 44 : 50;
+                quizData = allQuestions.slice(start, start + count);
+                //quizData = allQuestions.slice(0, 4);
+            } else {
+                // parseInt(document.getElementById("randomCountSelect")?.value, 10)
+                const numberRecord = 25;
+                let count = numberRecord ;
+                shuffle(allQuestions);
+                quizData = allQuestions.slice(0, count);
+            }
+            quizData = quizData.map((q) => {
+                const answers = [
+                    { key: "A", text: q.answerA },
+                    { key: "B", text: q.answerB },
+                    { key: "C", text: q.answerC },
+                    { key: "D", text: q.answerD },
+                    { key: "E", text: q.answerE },
+                ];
+                return { ...q, answers };
+            });
+            current = 0;
+            userAnswers = Array(quizData.length).fill(null);
+            timer = 20 * 60;
+            isSubmitted = false;
+            //document.querySelector(".numberRecord").textContent = `Tổng số câu: ${quizData.length}`;
+            document.getElementById("resetBtn").style.display = "none";
+            renderQuestion(current);
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+            updateTimer();
+        }
+
+        // Sự kiện đổi chế độ
+        // document.getElementById("modeBoDe").addEventListener("change", function () {
+        //     document.getElementById("boDeSelect").style.display = "";
+        //     document.getElementById("randomCountSelect").style.display = "none";
+        //     initQuiz();
+        // });
+        // document.getElementById("modeNgauNhien").addEventListener("change", function () {
+        //     document.getElementById("boDeSelect").style.display = "none";
+        //     document.getElementById("randomCountSelect").style.display = "";
+        //     initQuiz();
+        // });
+
+        // Sự kiện chọn bộ đề hoặc số câu ngẫu nhiên
+        // document.getElementById("boDeSelect").addEventListener("change", function () {
+        //     initQuiz();
+        // });
+        // document.getElementById("randomCountSelect").addEventListener("change", function () {
+        //     initQuiz();
+        // });
+
+        // Object lưu bộ câu hỏi
+        // Random vị trí câu hỏi và đáp án
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        shuffle(quizData);
+        quizData = quizData.map((q) => {
+            const answers = [
+                { key: "A", text: q.answerA },
+                { key: "B", text: q.answerB },
+                { key: "C", text: q.answerC },
+                { key: "D", text: q.answerD },
+                { key: "E", text: q.answerE },
+            ];
+            // shuffle(answers);
+            return { ...q, answers };
+        });
+
+        // ==== Hàm tiện ích DOM ====
+        function $(selector) {
+            return document.querySelector(selector);
+        }
+        function show(el) {
+            el.style.display = "inline-block";
+        }
+        function hide(el) {
+            el.style.display = "none";
+        }
+        function enable(el) {
+            el.disabled = false;
+            el.style.backgroundColor = "";
+        }
+        function disable(el) {
+            el.disabled = true;
+            el.style.backgroundColor = "#ccc";
+        }
+
+        // ==== Hàm lấy danh sách câu sai ====
+        function getWrongList() {
+            return quizData
+                .map((q, i) => ({ q, idx: i }))
+                .filter(({ q, idx }) => userAnswers[idx] !== q.correctAnswer.trim());
+        }
+
+        // ==== Hàm render câu hỏi ====
+        function renderQuestion(idx) {
+            let displayQuizData = quizData;
+            let displayUserAnswers = userAnswers;
+            let isWrongMode = showWrongOnly && isSubmitted;
+            if (isWrongMode) {
+                displayQuizData = getWrongList().map((item) => item.q);
+                displayUserAnswers = getWrongList().map(
+                    (item) => userAnswers[item.idx]
+                );
+                if (displayQuizData.length === 0) {
+                    $("#quiz").innerHTML = "<div>Bạn không có câu sai nào!</div>";
+                    hide($("#prevBtn"));
+                    hide($("#nextBtn"));
+                    return;
+                }
+                if (idx >= displayQuizData.length) idx = 0;
+                currentError = idx;
+            }
+            const q = displayQuizData[idx];
+            let html = `<div class="question">Câu ${idx + 1}: ${q.question
+                }</div><ul class="answers">`;
+            q.answers.forEach((ans, i) => {
+                if (!ans.text) return;
+                const checked = displayUserAnswers[idx] === ans.key ? "checked" : "";
+                let answerClass = "";
+                if (isSubmitted) {
+                    if (ans.key === q.correctAnswer.trim()) answerClass = "correct";
+                    else if (ans.key === displayUserAnswers[idx]) answerClass = "wrong";
+                }
+                html += `<li>
+      <label>
+        <input type="radio" name="answer" value="${ans.key}" ${checked} ${isSubmitted ? "disabled" : ""
+                    }>
+        <span class="${answerClass}">${ans.text}</span>
+      </label>
+    </li>`;
+            });
+            html += "</ul>";
+            if (isSubmitted) {
+                $(
+                    ".numberRecord"
+                ).textContent = `Đúng:  ${getTotalCorrect()} / ${quizData.length
+                }`;
+            }
+            $("#quiz").innerHTML = html;
+            $("#prevBtn").style.display = idx > 0 ? "inline-block" : "none";
+            if (isWrongMode) {
+                $("#nextBtn").style.display =
+                    idx < displayQuizData.length - 1 ? "inline-block" : "none";
+                $("#nextBtn").textContent = "Câu tiếp theo";
+            } else {
+                $("#nextBtn").style.display =
+                    idx < quizData.length ? "inline-block" : "none";
+                $("#nextBtn").textContent =
+                    idx === quizData.length - 1 ? "Kết thúc" : "Câu tiếp theo";
+            }
+            $(".actions").style.display = "flex";
+        }
+
+        // ==== Hàm reset trạng thái ====
+        function resetQuizState() {
+            showWrongOnly = false;
+            current = 0;
+            currentError = 0;
+            isSubmitted = false;
+            $(".numberRecord").textContent = "";
+            hide($("#resetBtn"));
+            hide($("#showWrongBtn"));
+            enable($("#showWrongBtn"));
+            $("#showWrongBtn").textContent = "Xem câu sai";
+            show($("#nextBtn"));
+            $(".actions").style.display = "flex";
+        }
+
+        // ==== Hàm submit ====
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            isSubmitted = true;
+            renderQuestion(current);
+            show($("#resetBtn"));
+            // Kiểm tra có câu sai không, nếu có thì mới hiện nút "Xem câu sai"
+            const hasWrong = getWrongList().length > 0;
+            if (hasWrong) show($("#showWrongBtn"));
+            else hide($("#showWrongBtn"));
+            enable($("#showWrongBtn"));
+            $("#showWrongBtn").textContent = "Xem câu sai";
+        }
+
+        // ==== Hàm tính số câu đúng ====
+        function getTotalCorrect() {
+            return quizData.reduce(
+                (count, q, idx) =>
+                    count + (userAnswers[idx] === q.correctAnswer.trim() ? 1 : 0),
+                0
+            );
+        }
+
+        // ==== Timer ====
+        function updateTimer() {
+            const min = Math.floor(timer / 60);
+            const sec = timer % 60;
+            $("#timer").textContent = `${min.toString().padStart(2, "0")}:${sec
+                .toString()
+                .padStart(2, "0")}`;
+            if (timer === 0) submitQuiz();
+            timer--;
+        }
+
+        // ==== Sự kiện ====
+
+        // Lưu đáp án khi chọn
+        document.addEventListener("change", function (e) {
+            if (e.target.name === "answer") {
+                if (showWrongOnly && isSubmitted) {
+                    // Gán đáp án cho đúng index gốc
+                    const wrongList = getWrongList();
+                    const realIdx = wrongList[currentError]?.idx;
+                    if (realIdx !== undefined) userAnswers[realIdx] = e.target.value;
+                } else {
+                    userAnswers[current] = e.target.value;
+                }
+            }
+        });
+
+        // Next/Prev
+        $("#nextBtn").onclick = function () {
+            if (!isSubmitted && userAnswers[current] == null) {
+                alert("Vui lòng chọn đáp án!");
+                return;
+            }
+            if (showWrongOnly && isSubmitted) {
+                const wrongList = getWrongList();
+                if (currentError < wrongList.length - 1) {
+                    currentError++;
+                    renderQuestion(currentError);
+                }
+            } else if (current < quizData.length - 1) {
+                current++;
+                renderQuestion(current);
+            } else if (!isSubmitted) {
+                submitQuiz();
+            }
+        };
+        $("#prevBtn").onclick = function () {
+            if (showWrongOnly && isSubmitted) {
+                if (currentError > 0) {
+                    currentError--;
+                    renderQuestion(currentError);
+                }
+            } else if (current > 0) {
+                current--;
+                renderQuestion(current);
+            }
+        };
+
+        $("#showWrongBtn").onclick = function () {
+            showWrongOnly = !showWrongOnly;
+            currentError = 0;
+            renderQuestion(currentError);
+            if (showWrongOnly) {
+                disable($("#showWrongBtn"));
+            } else {
+                enable($("#showWrongBtn"));
+            }
+        };
+
+        // Reset quiz
+        $("#resetBtn").onclick = function () {
+            // document.getElementById("modeBoDe")?.checked ? "bode" : "random";
+            let mode = "lkl";
+            if (mode == "bode") {
+                let boDe = parseInt(document.getElementById("boDeSelect").value, 10);
+                let start = (boDe - 1) * 50;
+                let count = boDe === 7 ? 44 : 50;
+                quizData = window.questions.slice(start, start + count);
+                shuffle(quizData);
+            } else {
+                let count = 25;
+                let allQuestions = JSON.parse(JSON.stringify(window.questions));
+                if (count !== "all") {
+                    count = parseInt(count, 10);
+                    shuffle(allQuestions);
+                    quizData = allQuestions.slice(0, count);
+                } else {
+                    quizData = allQuestions;
+                    shuffle(quizData);
+                }
+            }
+
+            quizData = quizData.map((q) => {
+                const answers = [
+                    { key: "A", text: q.answerA },
+                    { key: "B", text: q.answerB },
+                    { key: "C", text: q.answerC },
+                    { key: "D", text: q.answerD },
+                    { key: "E", text: q.answerE },
+                ];
+                // shuffle(answers);
+                return { ...q, answers };
+            });
+            userAnswers = Array(quizData.length).fill(null);
+            timer = 20 * 60;
+            resetQuizState();
+            renderQuestion(current);
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+            updateTimer();
+        };
+
+        // ==== Sự kiện chọn số câu hỏi ====
+        // $("#randomCountSelect").addEventListener("change", function () {
+        //     initQuiz();
+        // });
+
+        // ==== Shuffle ====
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // ==== Khởi tạo lần đầu ====
+        initQuiz();
+    </script>
+</body>
+
+</html>
