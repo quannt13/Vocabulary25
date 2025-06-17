@@ -83,7 +83,7 @@
                 //quizData = allQuestions.slice(0, 4);
             } else {
                 // parseInt(document.getElementById("randomCountSelect")?.value, 10)
-                const numberRecord = 27;
+                const numberRecord = 25;
                 let count = numberRecord ;
                 shuffle(allQuestions);
                 quizData = allQuestions.slice(0, count);
@@ -356,7 +356,7 @@
                 quizData = window.questions.slice(start, start + count);
                 shuffle(quizData);
             } else {
-                let count = 27;
+                let count = 25;
                 let allQuestions = JSON.parse(JSON.stringify(window.questions));
                 if (count !== "all") {
                     count = parseInt(count, 10);
