@@ -1,202 +1,218 @@
 window.questions =[
   {
-    "question": "Thợ thủ công trong tiếng Anh là gì?",
-    "correctAnswer": "A",
-    "answerA": "artisan",
-    "answerB": "electrician",
-    "answerC": "tourist",
-    "answerD": "helper"
+    "question": "What does 'brave' mean?",
+    "correctAnswer": "B",
+    "answerA": "Rộng lớn",
+    "answerB": "Can đảm",
+    "answerC": "Thuận tiện",
+    "answerD": "Ghen tị"
   },
   {
-    "question": "Từ nào mang nghĩa 'cộng đồng'?",
-    "correctAnswer": "A",
-    "answerA": "community",
-    "answerB": "company",
-    "answerC": "committee",
-    "answerD": "common"
+    "question": "What does 'nomad' mean?",
+    "correctAnswer": "B",
+    "answerA": "Nông dân",
+    "answerB": "Người du mục",
+    "answerC": "Người thành thị",
+    "answerD": "Người giàu"
   },
   {
-    "question": "Người phục vụ cộng đồng gọi là gì?",
-    "correctAnswer": "A",
-    "answerA": "community helper",
-    "answerB": "police officer",
-    "answerC": "delivery person",
-    "answerD": "firefighter"
-  },
-  {
-    "question": "'Làng nghề thủ công' trong tiếng Anh là:",
+    "question": "What does 'buffalo-drawn cart' mean?",
     "correctAnswer": "C",
-    "answerA": "handicraft shop",
-    "answerB": "craft house",
-    "answerC": "craft village",
-    "answerD": "pottery place"
+    "answerA": "Xe máy",
+    "answerB": "Xe bò kéo",
+    "answerC": "Xe trâu kéo",
+    "answerD": "Xe đạp"
   },
   {
-    "question": "Từ nào mang nghĩa 'cắt giảm'?",
+    "question": "What does 'collect' mean?",
+    "correctAnswer": "A",
+    "answerA": "Thu gom",
+    "answerB": "Rải rác",
+    "answerC": "Trốn tránh",
+    "answerD": "Tặng"
+  },
+  {
+    "question": "What does 'convenient' mean?",
     "correctAnswer": "C",
-    "answerA": "get rid of",
-    "answerB": "cut off",
-    "answerC": "cut down on",
-    "answerD": "take away"
+    "answerA": "Bất cẩn",
+    "answerB": "Can đảm",
+    "answerC": "Thuận tiện",
+    "answerD": "Cứng nhắc"
   },
   {
-    "question": "Nhân viên giao hàng là:",
-    "correctAnswer": "B",
-    "answerA": "postman",
-    "answerB": "delivery person",
-    "answerC": "collector",
-    "answerD": "helper"
-  },
-  {
-    "question": "Thợ điện tiếng Anh là:",
+    "question": "What does 'disturb' mean?",
     "correctAnswer": "A",
-    "answerA": "electrician",
-    "answerB": "engineer",
-    "answerC": "mechanic",
-    "answerD": "builder"
+    "answerA": "Làm phiền",
+    "answerB": "Tập trung",
+    "answerC": "Dọn dẹp",
+    "answerD": "Rửa sạch"
   },
   {
-    "question": "Từ nào mang nghĩa 'cơ sở vật chất'?",
+    "question": "What does 'electrical appliance' mean?",
     "correctAnswer": "B",
-    "answerA": "materials",
-    "answerB": "facilities",
-    "answerC": "resources",
-    "answerD": "utilities"
+    "answerA": "Thiết bị cơ khí",
+    "answerB": "Thiết bị điện",
+    "answerC": "Vật dụng nấu ăn",
+    "answerD": "Đèn ngủ"
   },
   {
-    "question": "'Firefighter' nghĩa là gì?",
-    "correctAnswer": "B",
-    "answerA": "cảnh sát",
-    "answerB": "người chữa cháy",
-    "answerC": "thợ sửa điện",
-    "answerD": "người đưa thư"
-  },
-  {
-    "question": "'Hương thơm' trong tiếng Anh là:",
-    "correctAnswer": "B",
-    "answerA": "flavor",
-    "answerB": "fragrance",
-    "answerC": "odor",
-    "answerD": "scented"
-  },
-  {
-    "question": "Từ nào nghĩa là 'chức năng'?",
-    "correctAnswer": "D",
-    "answerA": "feature",
-    "answerB": "work",
-    "answerC": "role",
-    "answerD": "function"
-  },
-  {
-    "question": "Người dọn vệ sinh được gọi là:",
-    "correctAnswer": "A",
-    "answerA": "cleaner",
-    "answerB": "garbage collector",
-    "answerC": "janitor",
-    "answerD": "delivery man"
-  },
-  {
-    "question": "Từ nào nghĩa là 'có quan hệ tốt với'?",
+    "question": "What does 'generous' mean?",
     "correctAnswer": "C",
-    "answerA": "pass down",
-    "answerB": "hand down",
-    "answerC": "get on with",
-    "answerD": "look around"
+    "answerA": "Nhút nhát",
+    "answerB": "Bủn xỉn",
+    "answerC": "Hào phóng",
+    "answerD": "Nhanh nhẹn"
   },
   {
-    "question": "'Truyền lại' có thể dùng từ nào sau đây?",
+    "question": "What does 'ger' mean?",
+    "correctAnswer": "A",
+    "answerA": "Túp lều của dân du mục",
+    "answerB": "Loại xe kéo",
+    "answerC": "Cái thúng",
+    "answerD": "Nhà sàn"
+  },
+  {
+    "question": "What does 'Gobi Highlands' mean?",
     "correctAnswer": "B",
-    "answerA": "get on with",
-    "answerB": "pass down",
-    "answerC": "take on",
-    "answerD": "preserve"
+    "answerA": "Đồng bằng Gobi",
+    "answerB": "Cao nguyên Gobi",
+    "answerC": "Hồ nước Gobi",
+    "answerD": "Rừng rậm Gobi"
   },
   {
-    "question": "Sản phẩm thủ công gọi là:",
-    "correctAnswer": "D",
-    "answerA": "product",
-    "answerB": "handmade",
-    "answerC": "craft",
-    "answerD": "handicraft"
-  },
-  {
-    "question": "'Thăm quan, ngắm xung quanh' là nghĩa của:",
+    "question": "What does 'grassland' mean?",
     "correctAnswer": "B",
-    "answerA": "preserve",
-    "answerB": "look around",
-    "answerC": "check in",
-    "answerD": "move around"
+    "answerA": "Bãi cát",
+    "answerB": "Đồng cỏ",
+    "answerC": "Cánh đồng lúa",
+    "answerD": "Đồi núi"
   },
   {
-    "question": "Từ nào nghĩa là 'nguyên bản'?",
-    "correctAnswer": "A",
-    "answerA": "original",
-    "answerB": "copy",
-    "answerC": "first",
-    "answerD": "authentic"
-  },
-  {
-    "question": "Từ nào sau đây cũng mang nghĩa 'truyền lại'?",
-    "correctAnswer": "A",
-    "answerA": "hand down",
-    "answerB": "give away",
-    "answerC": "send off",
-    "answerD": "pass on"
-  },
-  {
-    "question": "Công an gọi là gì trong tiếng Anh?",
-    "correctAnswer": "A",
-    "answerA": "police officer",
-    "answerB": "security guard",
-    "answerC": "detective",
-    "answerD": "military"
-  },
-  {
-    "question": "Từ nào sau đây nghĩa là 'đồ gốm'?",
+    "question": "What does 'harvest time' mean?",
     "correctAnswer": "C",
-    "answerA": "ceramics",
-    "answerB": "clay",
-    "answerC": "pottery",
-    "answerD": "statue"
+    "answerA": "Mùa mưa",
+    "answerB": "Mùa cấy",
+    "answerC": "Mùa gặt",
+    "answerD": "Mùa đông"
   },
   {
-    "question": "Từ nào sau đây có nghĩa là 'bảo tồn'?",
+    "question": "What does 'herd' mean?",
+    "correctAnswer": "B",
+    "answerA": "Hái quả",
+    "answerB": "Chăn dắt",
+    "answerC": "Dự đoán",
+    "answerD": "Dừng lại"
+  },
+  {
+    "question": "What does 'cattle' mean?",
+    "correctAnswer": "B",
+    "answerA": "Gà",
+    "answerB": "Gia súc",
+    "answerC": "Dê",
+    "answerD": "Cá"
+  },
+  {
+    "question": "What does 'local' mean?",
+    "correctAnswer": "B",
+    "answerA": "Quốc tế",
+    "answerB": "Địa phương",
+    "answerC": "Xa xôi",
+    "answerD": "Hiện đại"
+  },
+  {
+    "question": "What does 'Mongolia' mean?",
     "correctAnswer": "C",
-    "answerA": "protect",
-    "answerB": "reserve",
-    "answerC": "preserve",
-    "answerD": "sustain"
+    "answerA": "Lào",
+    "answerB": "Thái Lan",
+    "answerC": "Mông Cổ",
+    "answerD": "Malaysia"
   },
   {
-    "question": "Từ nào mang nghĩa 'hết, cạn kiệt'?",
+    "question": "What does 'nomadic' mean?",
+    "correctAnswer": "B",
+    "answerA": "Thuộc về thành phố",
+    "answerB": "Thuộc về du mục",
+    "answerC": "Thuộc về học thuật",
+    "answerD": "Thuộc về nông nghiệp"
+  },
+  {
+    "question": "What does 'paddy field' mean?",
     "correctAnswer": "C",
-    "answerA": "run off",
-    "answerB": "use up",
-    "answerC": "run out of",
-    "answerD": "break down"
+    "answerA": "Ruộng muối",
+    "answerB": "Ruộng hoa màu",
+    "answerC": "Đồng lúa",
+    "answerD": "Bãi cỏ"
   },
   {
-    "question": "'Đặc sản' trong tiếng Anh là:",
+    "question": "What does 'pasture' mean?",
     "correctAnswer": "A",
-    "answerA": "speciality",
-    "answerB": "famous dish",
-    "answerC": "signature",
-    "answerD": "highlight"
+    "answerA": "Bãi cỏ cho gia súc",
+    "answerB": "Vườn cây ăn trái",
+    "answerC": "Cánh đồng hoa",
+    "answerD": "Hồ nước"
   },
   {
-    "question": "Từ nào có nghĩa là 'vùng ngoại ô'?",
-    "correctAnswer": "B",
-    "answerA": "district",
-    "answerB": "suburb",
-    "answerC": "area",
-    "answerD": "region"
+    "question": "What does 'pick' mean?",
+    "correctAnswer": "C",
+    "answerA": "Trồng",
+    "answerB": "Gặt",
+    "answerC": "Hái",
+    "answerD": "Xới"
   },
   {
-    "question": "'Điểm du lịch' tiếng Anh là gì?",
+    "question": "What does 'vast' mean?",
     "correctAnswer": "B",
-    "answerA": "tourist destination",
-    "answerB": "tourist attraction",
-    "answerC": "travel spot",
-    "answerD": "visit place"
+    "answerA": "Nhỏ hẹp",
+    "answerB": "Rộng lớn",
+    "answerC": "Tối tăm",
+    "answerD": "Cao"
+  },
+  {
+    "question": "What does 'expect' mean?",
+    "correctAnswer": "A",
+    "answerA": "Mong đợi",
+    "answerB": "Gợi ý",
+    "answerC": "Lãng quên",
+    "answerD": "Từ chối"
+  },
+  {
+    "question": "What does 'harvest' mean?",
+    "correctAnswer": "C",
+    "answerA": "Trồng cây",
+    "answerB": "Tưới nước",
+    "answerC": "Gặt hái",
+    "answerD": "Chăm sóc"
+  },
+  {
+    "question": "What does 'chore' mean?",
+    "correctAnswer": "A",
+    "answerA": "Công việc vặt",
+    "answerB": "Lễ hội",
+    "answerC": "Trò chơi",
+    "answerD": "Bữa ăn"
+  },
+  {
+    "question": "What does 'envious' mean?",
+    "correctAnswer": "B",
+    "answerA": "Biết ơn",
+    "answerB": "Ghen tị",
+    "answerC": "Tự tin",
+    "answerD": "Lo lắng"
+  },
+  {
+    "question": "What does 'explore' mean?",
+    "correctAnswer": "B",
+    "answerA": "Cư trú",
+    "answerB": "Thám hiểm",
+    "answerC": "Ở lại",
+    "answerD": "Xây dựng"
+  },
+  {
+    "question": "What does 'beehive' mean?",
+    "correctAnswer": "B",
+    "answerA": "Tổ kiến",
+    "answerB": "Tổ ong",
+    "answerC": "Tổ chim",
+    "answerD": "Lồng chim"
   }
 ];
